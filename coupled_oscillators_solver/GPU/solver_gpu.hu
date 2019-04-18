@@ -1,0 +1,58 @@
+#ifndef __solver_gpu_hu__
+#define __solver_gpu_hu__
+
+#ifdef DOUBLE
+	typedef double1 Real1;
+	typedef double2 Real2;
+#else
+	typedef float1 Real1;
+	typedef float2 Real2;
+#endif
+
+
+
+// structure holds all device pointers.
+// Needed to avoid pointer function pass problem (e.g. in cudaMalloc)
+struct device_pointers {
+
+	// arrays
+	Real *c0;							// concentration history
+	Real *c;							// current state
+	Real *cnew;							// pointer to next value
+	Real *cdelay;						// pointer to delay values
+	Real *het;							// heterogeneity or forcing
+	Real *output;						// in 1d: saving + analysis
+	Real *mask;							// nonlocal convolution kernel/mask
+	Real *nw_temp;						// temporary array for matrix multiplication and other computations in network coupling
+
+	// previously arrays, now a single value for faster access speed
+	Real1 coupling_coeffs1;
+	Real2 coupling_coeffs2;
+
+
+};
+
+class streams {
+
+	public:
+	streams(){
+		cudaStreamCreate(&stream1);
+		cudaStreamCreate(&stream2);
+	}
+
+	~streams(){
+		cudaStreamDestroy(stream1);
+		cudaStreamDestroy(stream2);
+	}
+
+	cudaStream_t stream1;
+	cudaStream_t stream2;
+
+};
+
+
+void checkCUDAError(const char *msg, int line);
+
+
+
+#endif // __solver_gpu_hu__

@@ -1,0 +1,6 @@
+#ifndef __coupling_hu__
+#define __coupling_hu__
+
+void coupling(device_pointers *d, params &p, streams *s, size_t step, modelparams &m);
+
+#endif // __coupling_hu__

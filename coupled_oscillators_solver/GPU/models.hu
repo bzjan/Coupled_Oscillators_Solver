@@ -1,0 +1,6 @@
+#ifndef __models_hu__
+#define __models_hu__
+
+void reaction(device_pointers *d, params &p, streams *s);
+
+#endif // __models_hu__

@@ -1,0 +1,8 @@
+#ifndef __solver_interface_gpu_hu__
+#define __solver_interface_gpu_hu__
+
+void solver(Real *c, Real *k1, params &p, modelparams &m);
+
+
+
+#endif // __solver_interface_gpu_hu__
