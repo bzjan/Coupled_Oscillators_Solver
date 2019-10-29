@@ -65,7 +65,7 @@ make
 
 * for example:
 ```
-./SWC_CPU_solver.exe --ini ../ini/phase_global.ini
+./coupled_oscillators_solver.exe --ini ../ini/phase_global.ini
 ```
 
 #### 2) to run the visulization, enter on the commandline:
